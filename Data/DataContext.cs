@@ -13,5 +13,6 @@ namespace UBB_SE_2024_923_1.Data
         public DbSet<ArtistDetails> ArtistDetails { get; set; }
         public DbSet<AdDistributionData> AdDistributionData { get; set; }
         public DbSet <SongRecommendationDetails> SongRecommendationDetails { get; set; }
+        public DbSet<UserPlaybackBehaviour> UserPlaybackBehaviour { get; set; }
     }
 }
