@@ -1,0 +1,6 @@
+@UBB_SE_2024_923_1_HostAddress = http://localhost:5068
+
+GET {{UBB_SE_2024_923_1_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
