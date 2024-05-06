@@ -38,8 +38,7 @@ namespace UBB_SE_2024_923_1.Controllers
         }
 
         [HttpPut("{songId}+{adCampaign}")]
-        public async Task<IActionResult> PutAdDistributionData(int songId, 
-            int adCampaign, AdDistributionData adDistributionData)
+        public async Task<IActionResult> PutAdDistributionData(int songId, int adCampaign, AdDistributionData adDistributionData)
         {
             if (songId != adDistributionData.SongId || adCampaign != adDistributionData.AdCampaign)
             {
@@ -52,14 +51,14 @@ namespace UBB_SE_2024_923_1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                //if (!AdDistributionDataExists(id))
-                //{
+                // if (!AdDistributionDataExists(id))
+                // {
                 //    return NotFound();
-                //}
-                //else
-                //{
+                // }
+                // else
+                // {
                 //    throw;
-                //}
+                // }
             }
 
             return NoContent();
@@ -103,7 +102,5 @@ namespace UBB_SE_2024_923_1.Controllers
 
             return Ok(adDistributionData);
         }
-
     }
-
 }
