@@ -10,6 +10,5 @@ namespace UBB_SE_2024_923_1.Models
     {
         [Key] public int ArtistId { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
-
     }
 }

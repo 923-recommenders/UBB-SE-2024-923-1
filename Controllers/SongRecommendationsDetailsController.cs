@@ -10,7 +10,6 @@ namespace UBB_SE_2024_923_1.Controllers
     [ApiController]
     public class SongRecommendationsDetailsController : ControllerBase
     {
-
         private readonly IRepository<SongRecommendationDetails> _repository;
 
         public SongRecommendationsDetailsController(IRepository<SongRecommendationDetails> repository)
@@ -43,20 +42,18 @@ namespace UBB_SE_2024_923_1.Controllers
         public async Task<IActionResult> PutSongRecommendationDetails(int songId, int month, int year,
             SongRecommendationDetails songRecommendationDetails)
         {
-            
-
             try
             {
                 await _repository.Update(songRecommendationDetails);
             }
             catch (DbUpdateConcurrencyException)
             {
-                //if (!SongRecommendationDetailsExists(id))
-                //{
+                // if (!SongRecommendationDetailsExists(id))
+                // {
                 //    return NotFound();
-                //}
-                //else
-                //{
+                // }
+                // else
+                // {
                 //    throw;
             }
 

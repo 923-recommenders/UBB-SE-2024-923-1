@@ -54,14 +54,14 @@ namespace UBB_SE_2024_923_1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                //if (!UserPlaybackBehaviourExists(userId, songId, timestamp))
-                //{
+                // if (!UserPlaybackBehaviourExists(userId, songId, timestamp))
+                // {
                 //    return NotFound();
-                //}
-                //else
-                //{
+                // }
+                // else
+                // {
                 //    throw;
-                //}
+                // }
             }
 
             return NoContent();
@@ -95,5 +95,4 @@ namespace UBB_SE_2024_923_1.Controllers
             return NoContent();
         }
     }
-
 }

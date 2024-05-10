@@ -52,14 +52,14 @@ namespace UBB_SE_2024_923_1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                //if (!ArtistDetailsExists(id))
-                //{
+                // if (!ArtistDetailsExists(id))
+                // {
                 //    return NotFound();
-                //}
-                //else
-                //{
+                // }
+                // else
+                // {
                 //    throw;
-                //}
+                // }
             }
 
             return NoContent();

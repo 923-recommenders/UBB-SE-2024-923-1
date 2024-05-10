@@ -3,6 +3,8 @@
     public class ArtistDetailsService
     {
         // we should use some validation module here
-        public ArtistDetailsService() { }
+        public ArtistDetailsService()
+        {
+        }
     }
 }
