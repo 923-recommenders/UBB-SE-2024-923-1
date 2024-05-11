@@ -51,14 +51,6 @@ namespace UBB_SE_2024_923_1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                // if (!AdDistributionDataExists(id))
-                // {
-                //    return NotFound();
-                // }
-                // else
-                // {
-                //    throw;
-                // }
             }
 
             return NoContent();
@@ -89,7 +81,7 @@ namespace UBB_SE_2024_923_1.Controllers
         }
 
         [HttpDelete("{songId}+{genre}+{language}+{country}")]
-        public async Task<ActionResult<AdDistributionData>> DeleteTrend(int songId, string genre, string language, string country)
+        public async Task<ActionResult<Trends>> DeleteTrend(int songId, string genre, string language, string country)
         {
             var trend = await _repository.GetByFourIdentifiers(songId, genre, language, country);
             if (trend == null)
