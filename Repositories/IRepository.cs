@@ -10,6 +10,7 @@
         Task<T> GetByTwoIdentifiers(int id1, int id2);
         Task<T> GetByThreeIdentifiers(int id1, int id2, int id3);
         Task<T> GetByThreeIdentifiers(int id1, int id2, DateTime id3);
+        Task<T> GetByFourIdentifiers(int id1, string id2, string id3, string id4);
         Task<IEnumerable<T>> GetAll();
         Task Add(T entity);
         Task Update(T entity);
