@@ -16,11 +16,11 @@ namespace UBB_SE_2024_923_1.Migrations
                 columns: table => new
                 {
                     SongId = table.Column<int>(type: "int", nullable: false),
-                    ArtistName = table.Column<string>(type: "string", nullable: false),
-                    Genere = table.Column<string>(type: "string", nullable: false),
-                    SubGenere = table.Column<string>(type: "string", nullable: false),
-                    Language = table.Column<string>(type: "string", nullable: false),
-                    Country = table.Column<string>(type: "string", nullable: false),
+                    ArtistName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Genere = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SubGenere = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                 },
                 constraints: table =>
                 {

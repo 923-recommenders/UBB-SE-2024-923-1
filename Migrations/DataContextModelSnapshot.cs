@@ -166,6 +166,34 @@ namespace UBB_SE_2024_923_1.Migrations
 
                     b.ToTable("UserPlaybackBehaviour");
                 });
+
+            modelBuilder.Entity("UBB_SE_2024_923_1.Models.Song", b =>
+            {
+                b.Property<int>("SongId")
+                    .HasColumnType("int");
+
+                b.Property<string>("ArtistName")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("Name")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("Genre")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("Subgenre")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("Language")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("Country")
+                    .HasColumnType("nvarchar(max)");
+
+                b.HasKey("SongId");
+
+                b.ToTable("Songs");
+            });
 #pragma warning restore 612, 618
         }
     }
