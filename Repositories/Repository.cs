@@ -7,7 +7,7 @@ namespace UBB_SE_2024_923_1.Repositories
     public class Repository<T> : IRepository<T>
         where T : class
     {
-        private readonly DataContext _context;
+        protected readonly DataContext _context;
 
         public Repository(DataContext context)
         {

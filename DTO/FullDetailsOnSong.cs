@@ -1,4 +1,4 @@
-﻿namespace UBB_SE_2024_923_1.Models
+﻿namespace UBB_SE_2024_923_1.DTO
 {
     public class FullDetailsOnSong
     {

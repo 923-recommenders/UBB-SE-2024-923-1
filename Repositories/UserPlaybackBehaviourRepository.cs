@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using UBB_SE_2024_923_1.Models;
 using Microsoft.EntityFrameworkCore;
-using static UBB_SE_2024_923_1.Repositories.UserPlaybackBehaviourRepository;
 using UBB_SE_2024_923_1.Data;
+
 namespace UBB_SE_2024_923_1.Repositories
 {
     /// <summary>
@@ -16,11 +16,8 @@ namespace UBB_SE_2024_923_1.Repositories
     /// </summary>
     public class UserPlaybackBehaviourRepository : Repository<UserPlaybackBehaviour>, IUserPlaybackBehaviourRepository
     {
-        private readonly DataContext _context;
-
         public UserPlaybackBehaviourRepository(DataContext context) : base(context)
         {
-            _context = context;
         }
 
         /// <summary>
