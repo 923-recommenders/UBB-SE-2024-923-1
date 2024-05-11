@@ -54,14 +54,6 @@ namespace UBB_SE_2024_923_1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                // if (!UserPlaybackBehaviourExists(userId, songId, timestamp))
-                // {
-                //    return NotFound();
-                // }
-                // else
-                // {
-                //    throw;
-                // }
             }
 
             return NoContent();

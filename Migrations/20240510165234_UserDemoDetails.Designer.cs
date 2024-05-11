@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UBB_SE_2024_923_1.Data;
 
@@ -11,9 +12,11 @@ using UBB_SE_2024_923_1.Data;
 namespace UBB_SE_2024_923_1.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240510165234_UserDemoDetails")]
+    partial class UserDemoDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,22 +67,6 @@ namespace UBB_SE_2024_923_1.Migrations
                     b.HasKey("ArtistId");
 
                     b.ToTable("ArtistDetails");
-                });
-
-            modelBuilder.Entity("UBB_SE_2024_923_1.Models.MostPlayedArtistInformation", b =>
-                {
-                    b.Property<int>("Artist_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Artist_Id"));
-
-                    b.Property<int>("Start_Listen_Events")
-                        .HasColumnType("int");
-
-                    b.HasKey("Artist_Id");
-
-                    b.ToTable("MostPlayedArtistInformation");
                 });
 
             modelBuilder.Entity("UBB_SE_2024_923_1.Models.SongRecommendationDetails", b =>
