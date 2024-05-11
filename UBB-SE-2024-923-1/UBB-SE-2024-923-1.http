@@ -1,0 +1,181 @@
+@UBB-SE-2024-923-1_HostAddress = https://localhost:7025
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/addistributiondata
+
+###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/addistributiondata
+Content-Type: application/json
+
+{
+  //AdDistributionData
+}
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/addistributiondata/0+0
+
+###
+
+DELETE {{UBB-SE-2024-923-1_HostAddress}}/addistributiondata/0+0
+
+###
+
+PUT {{UBB-SE-2024-923-1_HostAddress}}/addistributiondata/0+0
+Content-Type: application/json
+
+{
+  //AdDistributionData
+}
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/artistdetails
+
+###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/artistdetails
+Content-Type: application/json
+
+{
+  //ArtistDetails
+}
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/artistdetails/0
+
+###
+
+DELETE {{UBB-SE-2024-923-1_HostAddress}}/artistdetails/0
+
+###
+
+PUT {{UBB-SE-2024-923-1_HostAddress}}/artistdetails/0
+Content-Type: application/json
+
+{
+  //ArtistDetails
+}
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/songrecommendationsdetails
+
+###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/songrecommendationsdetails
+Content-Type: application/json
+
+{
+  //SongRecommendationDetails
+}
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/songrecommendationsdetails/0+0+0
+
+###
+
+DELETE {{UBB-SE-2024-923-1_HostAddress}}/songrecommendationsdetails/0+0+0
+
+###
+
+PUT {{UBB-SE-2024-923-1_HostAddress}}/songrecommendationsdetails/0+0+0
+Content-Type: application/json
+
+{
+  //SongRecommendationDetails
+}
+
+###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/trends
+Content-Type: application/json
+
+{
+  //Trends
+}
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/trends
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/trends/0+string+string+string
+
+###
+
+DELETE {{UBB-SE-2024-923-1_HostAddress}}/trends/0+string+string+string
+
+###
+
+PUT {{UBB-SE-2024-923-1_HostAddress}}/trends/0+string+string+string
+Content-Type: application/json
+
+{
+  //Trends
+}
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/songfeatures
+
+###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/songfeatures
+Content-Type: application/json
+
+{
+  //SongFeatures
+}
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/songfeatures/0+0
+
+###
+
+DELETE {{UBB-SE-2024-923-1_HostAddress}}/songfeatures/0+0
+
+###
+
+PUT {{UBB-SE-2024-923-1_HostAddress}}/songfeatures/0+0
+Content-Type: application/json
+
+{
+  //SongFeatures
+}
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/songdatabasemodel
+
+###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/songdatabasemodel
+Content-Type: application/json
+
+{
+  //SongDataBaseModel
+}
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/songdatabasemodel/0
+
+###
+
+DELETE {{UBB-SE-2024-923-1_HostAddress}}/songdatabasemodel/0
+
+###
+
+PUT {{UBB-SE-2024-923-1_HostAddress}}/songdatabasemodel/0
+Content-Type: application/json
+
+{
+  //SongDataBaseModel
+}
+
+###
