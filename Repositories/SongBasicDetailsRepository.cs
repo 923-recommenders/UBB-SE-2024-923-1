@@ -97,19 +97,86 @@ namespace UBB_SE_2024_923_1.Repositories
                 .CountAsync();
         }
 
-        public Tuple<string, decimal> GetMostPlayedArtistPercentile(int userId)
+        public async Task<Tuple<string, decimal>> GetMostPlayedArtistPercentile(int userId)
         {
-            throw new NotImplementedException();
+            var mostPlayedArtistInfo = await GetMostPlayedArtistInfoAsync(userId);
+            var mostPlayedArtist = await GetMostPlayedArtist(userId, mostPlayedArtistInfo);
+            var totalSongs = await GetTotalNumberOfSongs(userId);
+            return new Tuple<string, decimal>(mostPlayedArtist, (decimal)mostPlayedArtistInfo.Start_Listen_Events / totalSongs);
         }
 
-        public List<string> GetTop5Genres(int userId)
+        private async Task<MostPlayedArtistInformation> GetMostPlayedArtistInfoAsync(int userId)
         {
-            throw new NotImplementedException();
+            return await _context.UserPlaybackBehaviour
+                .Where(ub =>
+                    ub.UserId == userId && ub.EventType == PlaybackEventType.StartSongPlayback &&
+                    ub.Timestamp.Year == DateTime.UtcNow.Year)
+                .Join(
+                    _context.SongDataBaseModel,
+                    ub => ub.SongId,
+                    sd => sd.SongId,
+                    (ub, sd) => new { ArtistId = sd.ArtistId })
+                .GroupBy(result => result.ArtistId)
+                .Select(group => new MostPlayedArtistInformation
+                {
+                    Artist_Id = group.Key,
+                    Start_Listen_Events = group.Count()
+                })
+                .OrderByDescending(info => info.Start_Listen_Events)
+                .FirstOrDefaultAsync();
         }
 
-        public List<string> GetAllNewGenresDiscovered(int userId)
+        private async Task<string> GetMostPlayedArtist(int userId, MostPlayedArtistInformation mostPlayedArtistInfo)
         {
-            throw new NotImplementedException();
+            return await _context.ArtistDetails
+                .Where(ad => ad.ArtistId == mostPlayedArtistInfo.Artist_Id)
+                .Select(ad => ad.Name)
+                .FirstOrDefaultAsync();
+        }
+
+        private async Task<int> GetTotalNumberOfSongs(int userId)
+        {
+            return await _context.UserPlaybackBehaviour
+                .Where(ub => ub.UserId == userId && ub.EventType == PlaybackEventType.StartSongPlayback && ub.Timestamp.Year == DateTime.UtcNow.Year)
+                .CountAsync();
+        }
+
+        public async Task<List<string>> GetTop5Genres(int userId)
+        {
+            return await _context.UserPlaybackBehaviour
+                .Where(ub => ub.UserId == userId && ub.EventType == PlaybackEventType.StartSongPlayback && ub.Timestamp.Year == DateTime.UtcNow.Year)
+                .Join(
+                    _context.SongDataBaseModel,
+                    ub => ub.SongId,
+                    sb => sb.SongId,
+                    (ub, sb) => sb.Genre)
+                .GroupBy(genre => genre)
+                .OrderByDescending(group => group.Count())
+                .Select(group => group.Key)
+                .Take(5)
+                .ToListAsync();
+        }
+
+        public async Task<List<string>> GetAllNewGenresDiscovered(int userId)
+        {
+            var currentYearGenres = await _context.SongDataBaseModel
+                .Where(sb => _context.UserPlaybackBehaviour
+                    .Where(ub => ub.UserId == userId && ub.EventType == PlaybackEventType.StartSongPlayback && ub.Timestamp.Year == DateTime.UtcNow.Year)
+                    .Select(ub => ub.SongId)
+                    .Contains(sb.SongId))
+                .Select(sb => sb.Genre)
+                .Distinct()
+                .ToListAsync();
+
+            var previousYearGenres = await _context.SongDataBaseModel
+                .Where(sb => _context.UserPlaybackBehaviour
+                    .Where(ub => ub.UserId == userId && ub.EventType == PlaybackEventType.StartSongPlayback && ub.Timestamp.Year == DateTime.UtcNow.Year - 1)
+                    .Select(ub => ub.SongId)
+                    .Contains(sb.SongId))
+                .Select(sb => sb.Genre)
+                .ToListAsync();
+
+            return currentYearGenres.Except(previousYearGenres).ToList();
         }
     }
 }

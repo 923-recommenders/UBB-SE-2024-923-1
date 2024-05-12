@@ -13,10 +13,10 @@ namespace UBB_SE_2024_923_1.Repositories
 
         Task<Tuple<SongDataBaseModel, decimal>> GetMostPlayedSongPercentile(int userId);
 
-        Tuple<string, decimal> GetMostPlayedArtistPercentile(int userId);
+        Task<Tuple<string, decimal>> GetMostPlayedArtistPercentile(int userId);
 
-        List<string> GetTop5Genres(int userId);
+        Task<List<string>> GetTop5Genres(int userId);
 
-        List<string> GetAllNewGenresDiscovered(int userId);
+        Task<List<string>> GetAllNewGenresDiscovered(int userId);
     }
 }
