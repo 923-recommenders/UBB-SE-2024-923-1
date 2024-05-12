@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UBB-SE-2024-923-1\UBB-SE-2024-923-1.csproj" />
+    <ProjectReference Include="..\UBB-SE-2024-923-1.csproj" />
   </ItemGroup>
 
 
