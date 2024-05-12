@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UBB_SE_2024_923_1.Data;
 
@@ -11,9 +12,11 @@ using UBB_SE_2024_923_1.Data;
 namespace UBB_SE_2024_923_1.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240510171546_MostPlayedArtistInfo")]
+    partial class MostPlayedArtistInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,63 +69,6 @@ namespace UBB_SE_2024_923_1.Migrations
                     b.ToTable("ArtistDetails");
                 });
 
-            modelBuilder.Entity("UBB_SE_2024_923_1.Models.SongDataBaseModel", b =>
-                {
-                    b.Property<int>("SongId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SongId"));
-
-                    b.Property<string>("Album")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ArtistId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Genre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subgenre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SongId");
-
-                    b.ToTable("SongDataBaseModel");
-                });
-
-            modelBuilder.Entity("UBB_SE_2024_923_1.Models.SongFeatures", b =>
-                {
-                    b.Property<int>("SongId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ArtistId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SongId", "ArtistId");
-
-                    b.ToTable("SongFeatures");
-                });
-
             modelBuilder.Entity("UBB_SE_2024_923_1.Models.MostPlayedArtistInformation", b =>
                 {
                     b.Property<int>("Artist_Id")
@@ -165,25 +111,6 @@ namespace UBB_SE_2024_923_1.Migrations
                     b.HasKey("SongId", "Month", "Year");
 
                     b.ToTable("SongRecommendationDetails");
-                });
-
-            modelBuilder.Entity("UBB_SE_2024_923_1.Models.Trends", b =>
-                {
-                    b.Property<int>("SongId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Genre")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Language")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("SongId", "Genre", "Language", "Country");
-
-                    b.ToTable("Trends");
                 });
 
             modelBuilder.Entity("UBB_SE_2024_923_1.Models.UserDemographicsDetails", b =>
