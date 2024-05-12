@@ -17,5 +17,7 @@ namespace UBB_SE_2024_923_1.Data
         public DbSet<SongDataBaseModel> SongDataBaseModel { get; set; }
         public DbSet<SongFeatures> SongFeatures { get; set; }
         public DbSet<Trends> Trends { get; set; }
+        public DbSet<UserDemographicsDetails> UserDemographicsDetails { get; set; }
+        public DbSet<MostPlayedArtistInformation> MostPlayedArtistInformation { get; set; }
     }
 }

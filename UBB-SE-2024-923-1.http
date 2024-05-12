@@ -95,6 +95,15 @@ Content-Type: application/json
 
 {
   //Trends
+GET {{UBB-SE-2024-923-1_HostAddress}}/userdemographicsdetails
+
+###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/userdemographicsdetails
+Content-Type: application/json
+
+{
+  //UserDemographicsDetails
 }
 
 ###
@@ -116,6 +125,19 @@ Content-Type: application/json
 
 {
   //Trends
+GET {{UBB-SE-2024-923-1_HostAddress}}/userdemographicsdetails/0
+
+###
+
+DELETE {{UBB-SE-2024-923-1_HostAddress}}/userdemographicsdetails/0
+
+###
+
+PUT {{UBB-SE-2024-923-1_HostAddress}}/userdemographicsdetails/0
+Content-Type: application/json
+
+{
+  //UserDemographicsDetails
 }
 
 ###
@@ -129,6 +151,11 @@ Content-Type: application/json
 
 {
   //SongFeatures
+POST {{UBB-SE-2024-923-1_HostAddress}}/mostplayedartistinformation
+Content-Type: application/json
+
+{
+  //MostPlayedArtistInformation
 }
 
 ###
@@ -176,6 +203,19 @@ Content-Type: application/json
 
 {
   //SongDataBaseModel
+GET {{UBB-SE-2024-923-1_HostAddress}}/mostplayedartistinformation/0
+
+###
+
+DELETE {{UBB-SE-2024-923-1_HostAddress}}/mostplayedartistinformation/0
+
+###
+
+PUT {{UBB-SE-2024-923-1_HostAddress}}/mostplayedartistinformation/0
+Content-Type: application/json
+
+{
+  //MostPlayedArtistInformation
 }
 
 ###
