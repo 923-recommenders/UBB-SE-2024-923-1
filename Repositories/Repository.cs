@@ -56,5 +56,10 @@ namespace UBB_SE_2024_923_1.Repositories
         {
             return await _context.Set<T>().FindAsync(id1, id2, id3);
         }
+
+        public async Task<T> GetByFourIdentifiers(int id1, string id2, string id3, string id4)
+        {
+            return await _context.Set<T>().FindAsync(id1, id2, id3, id4);
+        }
     }
 }

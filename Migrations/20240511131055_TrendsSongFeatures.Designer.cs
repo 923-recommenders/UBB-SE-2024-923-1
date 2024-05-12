@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UBB_SE_2024_923_1.Data;
 
@@ -11,9 +12,11 @@ using UBB_SE_2024_923_1.Data;
 namespace UBB_SE_2024_923_1.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240511131055_TrendsSongFeatures")]
+    partial class TrendsSongFeatures
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,22 +67,6 @@ namespace UBB_SE_2024_923_1.Migrations
                     b.HasKey("ArtistId");
 
                     b.ToTable("ArtistDetails");
-                });
-
-            modelBuilder.Entity("UBB_SE_2024_923_1.Models.MostPlayedArtistInformation", b =>
-                {
-                    b.Property<int>("Artist_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Artist_Id"));
-
-                    b.Property<int>("Start_Listen_Events")
-                        .HasColumnType("int");
-
-                    b.HasKey("Artist_Id");
-
-                    b.ToTable("MostPlayedArtistInformation");
                 });
 
             modelBuilder.Entity("UBB_SE_2024_923_1.Models.SongDataBaseModel", b =>
@@ -184,44 +171,6 @@ namespace UBB_SE_2024_923_1.Migrations
                     b.HasKey("SongId", "Genre", "Language", "Country");
 
                     b.ToTable("Trends");
-                });
-
-            modelBuilder.Entity("UBB_SE_2024_923_1.Models.UserDemographicsDetails", b =>
-                {
-                    b.Property<int>("User_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("User_Id"));
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date_Of_fBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Premium_User")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Race")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("User_Id");
-
-                    b.ToTable("UserDemographicsDetails");
                 });
 
             modelBuilder.Entity("UBB_SE_2024_923_1.Models.UserPlaybackBehaviour", b =>
