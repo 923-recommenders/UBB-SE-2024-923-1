@@ -51,6 +51,7 @@ namespace UBB_SE_2024_923_1.Controllers
             try
             {
                 await _repository.Update(userDemographicsDetails);
+                return Ok(new { message = "User demographics details updated successfully." });
             }
             catch (DbUpdateConcurrencyException)
             {
