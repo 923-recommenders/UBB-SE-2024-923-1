@@ -10,9 +10,9 @@ namespace UBB_SE_2024_923_1.Controllers
     [ApiController]
     public class RecapController : ControllerBase
     {
-        private readonly RecapService _recapService;
+        private readonly IRecapService _recapService;
 
-        public RecapController(RecapService recapService)
+        public RecapController(IRecapService recapService)
         {
             _recapService = recapService;
         }

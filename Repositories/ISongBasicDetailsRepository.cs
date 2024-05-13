@@ -9,7 +9,7 @@ namespace UBB_SE_2024_923_1.Repositories
 
         Task<SongDataBaseModel> GetSongBasicDetails(int songId);
 
-        Task<List<SongDataBaseModel>> GetTop5MostListenedSongs(int userId);
+        Task<List<SongDataBaseModel?>> GetTop5MostListenedSongs(int userId);
 
         Task<Tuple<SongDataBaseModel, decimal>> GetMostPlayedSongPercentile(int userId);
 

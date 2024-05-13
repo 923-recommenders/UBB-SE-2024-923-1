@@ -44,7 +44,10 @@ namespace UBB_SE_2024_923_1.Repositories
 
         public async Task<List<SongDataBaseModel>> GetTop5MostListenedSongs(int userId)
         {
-            var top5SongIds = await _context.UserPlaybackBehaviour
+            /*SELECT * FROM SongBasicDetails WHERE song_id IN (SELECT TOP 5 song_id FROM UserPlaybackBehaviour WHERE user_id = @userId
+             AND event_type = 2 GROUP BY song_id ORDER BY COUNT(song_id) DESC);*/
+
+            /*var top5SongIds = await _context.UserPlaybackBehaviour
                 .Where(ub => ub.UserId == userId && ub.EventType == PlaybackEventType.StartSongPlayback)
                 .GroupBy(ub => ub.SongId)
                 .OrderByDescending(g => g.Count())
@@ -54,6 +57,24 @@ namespace UBB_SE_2024_923_1.Repositories
 
             return await _context.SongDataBaseModel
                 .Where(song => top5SongIds.Contains(song.SongId))
+                .ToListAsync();*/
+
+            /*return await _context.UserPlaybackBehaviour
+                .Where(upb => upb.UserId == userId && upb.EventType == PlaybackEventType.StartSongPlayback)
+                .GroupBy(upb => upb.SongId)
+                .Select(g => new { SongId = g.Key, Count = g.Count() })
+                .OrderByDescending(g => g.Count)
+                .Take(5)
+                .Select(g => _context.SongDataBaseModel.Find(g.SongId))
+                .ToListAsync();*/
+
+            return await _context.SongDataBaseModel
+                .Where(song => _context.UserPlaybackBehaviour
+                    .Where(ub => ub.UserId == userId && ub.EventType == PlaybackEventType.StartSongPlayback)
+                    .GroupBy(ub => ub.SongId)
+                    .Select(g => g.Key)
+                    .Take(5)
+                    .Contains(song.SongId))
                 .ToListAsync();
         }
 

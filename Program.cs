@@ -20,7 +20,7 @@ namespace UBB_SE_2024_923_1
             builder.Services.AddScoped<ISongBasicDetailsRepository, SongBasicDetailsRepository>();
             builder.Services.AddScoped<IUserPlaybackBehaviourRepository, UserPlaybackBehaviourRepository>();
 
-            builder.Services.AddScoped<RecapService>();
+            builder.Services.AddScoped<IRecapService, RecapService>();
 
             builder.Services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

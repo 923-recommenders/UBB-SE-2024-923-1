@@ -4,7 +4,7 @@ using UBB_SE_2024_923_1.Repositories;
 
 namespace UBB_SE_2024_923_1.Services
 {
-    public class RecapService
+    public class RecapService : IRecapService
     {
         private readonly ISongBasicDetailsRepository _songBasicDetailsRepository;
         private readonly IUserPlaybackBehaviourRepository _userPlaybackBehaviourRepository;
