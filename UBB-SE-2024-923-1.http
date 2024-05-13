@@ -235,3 +235,35 @@ Content-Type: application/json
 }
 
 ###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/recap/getEndOfYearRecap/0
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/recap/getListenerPersonality/0
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/recap/getMostPlayedArtistPercentile/0
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/recap/getMostPlayedSongPercentile/0
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/recap/getNewGenresDiscovered/0
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/recap/getTop5Genres/0
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/recap/getTop5MostListenedSongs/0
+
+###
+
+GET {{UBB-SE-2024-923-1_HostAddress}}/recap/getTotalMinutesListened/0
+
+###
