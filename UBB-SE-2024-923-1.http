@@ -179,3 +179,19 @@ Content-Type: application/json
 }
 
 ###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/users/register?newUserUsername=string&newUserPassword=string&newUserCountry=string&newUserEmail=string&newUserAge=0
+
+###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/users/register?newUserUsername=string&newUserPassword=string&newUserCountry=string&newUserEmail=string&newUserAge=0
+
+###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/users/register?newUserUsername=string&newUserPassword=string&newUserCountry=string&newUserEmail=string&newUserAge=0
+
+###
+
+POST {{UBB-SE-2024-923-1_HostAddress}}/users/register?newUserUsername=string&newUserPassword=string&newUserCountry=string&newUserEmail=string&newUserAge=0
+
+###
