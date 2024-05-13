@@ -36,7 +36,7 @@ namespace UBB_SE_2024_923_1.Repositories
 
             return user;
         }
-        public async Task EnableOrDisableAdmin(Users user)
+        public async Task EnableOrDisableArtist(Users user)
         {
             if (user.Role == 1)
             {
