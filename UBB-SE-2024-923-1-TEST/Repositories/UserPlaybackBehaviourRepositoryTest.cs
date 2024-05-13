@@ -56,7 +56,7 @@ namespace UBB_SE_2024_923_1_TEST.Repositories
         }
 
         [Fact]
-        public async Task GetListOfUserPlaybackBehaviourEntities_ReturnsCorrectList()
+        public async Task GetListOfUserPlaybackBehaviourEntities_HasList_ReturnsCorrectList()
         {
             //arrange
             var options = new DbContextOptionsBuilder<DataContext>()
