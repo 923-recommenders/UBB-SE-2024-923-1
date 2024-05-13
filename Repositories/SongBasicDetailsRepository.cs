@@ -8,9 +8,12 @@ using UBB_SE_2024_923_1.Models;
 
 namespace UBB_SE_2024_923_1.Repositories
 {
-    public class SongBasicDetailsRepository(DataContext context)
-        : Repository<SongDataBaseModel>(context), ISongBasicDetailsRepository
+    public class SongBasicDetailsRepository : Repository<SongDataBaseModel>, ISongBasicDetailsRepository
     {
+        public SongBasicDetailsRepository(DataContext context) : base(context)
+        {
+        }
+
         public async Task<SongBasicInformation> TransformSongBasicDetailsToSongBasicInfo(SongDataBaseModel song)
         {
             int artistId = song.ArtistId;
