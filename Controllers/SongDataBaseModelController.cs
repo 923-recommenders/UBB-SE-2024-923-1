@@ -19,7 +19,7 @@ namespace UBB_SE_2024_923_1.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SongDataBaseModel>>> GetSongDataBaseModel()
+        public async Task<ActionResult<IEnumerable<SongDataBaseModel>>> GetSongDataBaseModels()
         {
             var songDataBaseModel = await _repository.GetAll();
             return Ok(songDataBaseModel);
@@ -92,7 +92,7 @@ namespace UBB_SE_2024_923_1.Controllers
 
             await _repository.Delete(songDataBaseModel);
 
-            return NoContent();
+            return Ok(songDataBaseModel);
         }
     }
 }
