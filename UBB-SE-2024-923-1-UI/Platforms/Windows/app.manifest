@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
   <assemblyIdentity version="1.0.0.0" name="UBB-SE-2024-923-1-UI.WinUI.app"/>
@@ -13,3 +14,20 @@
     </windowsSettings>
   </application>
 </assembly>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
+  <assemblyIdentity version="1.0.0.0" name="UBB-SE-2024-923-1-UI.WinUI.app"/>
+
+  <application xmlns="urn:schemas-microsoft-com:asm.v3">
+    <windowsSettings>
+      <!-- The combination of below two tags have the following effect:
+           1) Per-Monitor for >= Windows 10 Anniversary Update
+           2) System < Windows 10 Anniversary Update
+      -->
+      <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true/PM</dpiAware>
+      <dpiAwareness xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">PerMonitorV2, PerMonitor</dpiAwareness>
+    </windowsSettings>
+  </application>
+</assembly>
+>>>>>>> 3d73a2731e59bcc0a9afa0ea1efd76c89bdac653
