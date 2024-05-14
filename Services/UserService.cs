@@ -9,7 +9,7 @@ using UBB_SE_2024_923_1.Repositories;
 
 namespace UBB_SE_2024_923_1.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
 
@@ -38,7 +38,6 @@ namespace UBB_SE_2024_923_1.Services
                     throw new ArgumentException("Country is required");
                 }
 
-                // TO BE CHANGED WHEN EMAIL TURNED TO INT
                 if (string.IsNullOrWhiteSpace(email))
                 {
                     throw new ArgumentException("Email is required");
@@ -109,7 +108,7 @@ namespace UBB_SE_2024_923_1.Services
             }
         }
 
-        private string GenerateJwtToken(Users user)
+        public string GenerateJwtToken(Users user)
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtConfig.SecretKey));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
