@@ -51,6 +51,7 @@ namespace UBB_SE_2024_923_1.Controllers
             try
             {
                 await _repository.Update(mostPlayedArtistInformation);
+                return Ok(mostPlayedArtistInformation);
             }
             catch (DbUpdateConcurrencyException)
             {
