@@ -5,8 +5,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using NuGet.Protocol.Core.Types;
 using UBB_SE_2024_923_1.Models;
 using UBB_SE_2024_923_1.Repositories;
+using UBB_SE_2024_923_1.Services;
 
 namespace UBB_SE_2024_923_1.Controllers
 {
@@ -14,102 +16,91 @@ namespace UBB_SE_2024_923_1.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UserRepository _repository;
-        public UsersController(UserRepository repository)
+        private readonly UserService _userService;
+
+        public UsersController(UserService userService)
         {
-            _repository = repository;
+            _userService = userService;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(string newUserUsername, string newUserPassword, string newUserCountry, string newUserEmail, int newUserAge)
+        public async Task<IActionResult> Register(string username, string password, string country, string email, int age)
         {
-            if (string.IsNullOrWhiteSpace(newUserUsername))
+            if (string.IsNullOrWhiteSpace(username))
             {
                 return BadRequest("Username is required");
             }
 
-            /*if (_repository.GetUserByUsername(newUserUsername) != null)
-            {
-                return BadRequest("This username is already taken");
-            }*/
-
-            if (string.IsNullOrWhiteSpace(newUserPassword))
+            if (string.IsNullOrWhiteSpace(password))
             {
                 return BadRequest("Password is required");
             }
 
-            if (string.IsNullOrWhiteSpace(newUserCountry))
+            if (string.IsNullOrWhiteSpace(country))
             {
                 return BadRequest("Country is required");
             }
 
-            if (string.IsNullOrWhiteSpace(newUserEmail))
+            // TO BE CHANGED WHEN EMAIL TURNED TO INT
+            if (string.IsNullOrWhiteSpace(email))
             {
                 return BadRequest("Email is required");
             }
 
-            if (newUserAge < 0)
+            if (age < 0)
             {
                 return BadRequest("Please select a valid age");
             }
 
-            var user = new Users
-            {
-                UserName = newUserUsername,
-                Password = newUserPassword,
-                Country = newUserCountry,
-                Email = newUserEmail,
-                Age = newUserAge,
-                Role = 1
-            };
+            var isRegistered = await _userService.RegisterUser(username, password, country, email, age);
 
-            await _repository.BcryptPassword(user);
-            await _repository.Add(user);
+            if (!isRegistered)
+            {
+                return BadRequest("This username is already taken");
+            }
 
             return Ok(new { message = "Registration successful" });
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(string loginUsername, string loginPassword)
+        public async Task<IActionResult> Login(string username, string password)
         {
-            if (string.IsNullOrWhiteSpace(loginUsername))
+            if (string.IsNullOrWhiteSpace(username))
             {
                 return BadRequest("Username is required");
             }
 
-            if (string.IsNullOrWhiteSpace(loginPassword))
+            if (string.IsNullOrWhiteSpace(password))
             {
                 return BadRequest("Password is required");
             }
 
-            var user = await _repository.GetUserByUsername(loginUsername);
+            var token = await _userService.AuthenticateUser(username, password);
 
-            if (user == null)
+            if (token == null)
             {
-                return NotFound(new { message = "User not found" });
+                return BadRequest(new { message = "Invalid username or password" });
+            }
+            return Ok(new { token });
+        }
+
+        [HttpPut("{userId}/enable-disable")]
+        public async Task<IActionResult> EnableOrDisableArtist(int userId)
+        {
+            if (userId <= 0)
+            {
+                return BadRequest("Invalid user ID");
             }
 
-            if (!_repository.VerifyPassword(loginPassword, user.Password))
+            var isUpdated = await _userService.EnableOrDisableArtist(userId);
+
+            if (!isUpdated)
             {
-                return BadRequest(new { message = "Incorrect password" });
+                return NotFound("User not found");
             }
 
-            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtConfig.SecretKey));
-            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-            var tokenOptions = new JwtSecurityToken(
-                issuer: "923/1",
-                claims: new Claim[]
-                {
-                    new Claim("username", user.UserName),
-                    new Claim("id", user.UserId.ToString()),
-                    new Claim("role", user.Role.ToString())
-                    // Add more claims as needed
-                },
-                signingCredentials: signinCredentials);
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
-
-            // Return JWT token to client
-            return Ok(new { token = tokenString });
+            return Ok(new { message = "Artist status updated successfully" });
         }
     }
 }
+
