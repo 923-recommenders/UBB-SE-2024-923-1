@@ -25,6 +25,8 @@ namespace UBB_SE_2024_923_1
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<UserService>();
 
+            builder.Services.AddScoped<TopGenresService>();
+
             builder.Services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
