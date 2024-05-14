@@ -1,9 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using UBB_SE_2024_923_1.Data;
 using UBB_SE_2024_923_1.Models;
 using UBB_SE_2024_923_1.Repositories;
 
@@ -15,11 +12,13 @@ namespace UBB_SE_2024_923_1.Controllers
     {
         private readonly IRepository<Song> _repository;
         private readonly IRepository<Users> _userRepository;
+        private readonly ExcludedCountryRepsitory _excludedCountryRepsitory;
 
-        public SongController(IRepository<Song> repository, IRepository<Users> userRepository)
+        public SongController(IRepository<Song> repository, IRepository<Users> userRepository, ExcludedCountryRepsitory excludedCountryRepsitory)
         {
             _repository = repository;
             _userRepository = userRepository;
+            _excludedCountryRepsitory = excludedCountryRepsitory;
         }
 
         [Authorize]
@@ -45,15 +44,29 @@ namespace UBB_SE_2024_923_1.Controllers
 
             var user = await _userRepository.GetById(userId);
             var userAge = user.Age;
+            var userCountry = user.Country;
 
             var songs = await _repository.GetAll();
 
-            if (userAge < 18)
+            List<Song> filteredSongs = new List<Song>();
+
+            foreach (Song song in songs)
             {
-                songs = songs.Where(song => !song.IsExplicit).ToList();
+                var excludedCountries = await _excludedCountryRepsitory.GetAllExcludedCounties(song);
+                excludedCountries = excludedCountries.Where(country => country.Name == userCountry).ToList();
+
+                if (excludedCountries.Count() == 0)
+                {
+                    filteredSongs.Add(song);
+                }
             }
 
-            return Ok(songs);
+            if (userAge < 18)
+            {
+                filteredSongs = filteredSongs.Where(song => !song.IsExplicit).ToList();
+            }
+
+            return Ok(filteredSongs);
         }
 
         [Authorize]
@@ -85,6 +98,15 @@ namespace UBB_SE_2024_923_1.Controllers
             if (song == null)
             {
                 return NotFound();
+            }
+
+            var userCountry = user.Country;
+            var excludedCountries = await _excludedCountryRepsitory.GetAllExcludedCounties(song);
+            excludedCountries = excludedCountries.Where(country => country.Name == userCountry).ToList();
+
+            if (excludedCountries.Count() > 0)
+            {
+                song = null;
             }
 
             if (song.IsExplicit && userAge < 18)
