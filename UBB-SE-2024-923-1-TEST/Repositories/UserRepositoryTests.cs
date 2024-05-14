@@ -37,7 +37,7 @@ namespace UBB_SE_2024_923_1_TEST.Repositories
 
             // Assert
             Assert.NotNull(user.Password);
-            Assert.NotEqual("password", user.Password); // Ensure password is encrypted
+            Assert.NotEqual("password", user.Password);
         }
 
         [Fact]
@@ -83,7 +83,7 @@ namespace UBB_SE_2024_923_1_TEST.Repositories
                 Password = "password",
                 Country = "Romania",
                 Email = "email@email.com",
-                Role = 1 // Assuming Role 1 is for an artist
+                Role = 1
             };
             await dbContext.Users.AddAsync(user);
             await dbContext.SaveChangesAsync();
@@ -94,7 +94,7 @@ namespace UBB_SE_2024_923_1_TEST.Repositories
             // Assert
             var updatedUser = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == user.UserId);
             Assert.NotNull(updatedUser);
-            Assert.Equal(2, updatedUser.Role); // Role should be toggled from 1 to 2
+            Assert.Equal(2, updatedUser.Role);
         }
 
         [Fact]
@@ -109,7 +109,7 @@ namespace UBB_SE_2024_923_1_TEST.Repositories
                 Password = "password",
                 Country = "Romania",
                 Email = "email@email.com",
-                Role = 2 // Assuming Role 2 is not for an artist
+                Role = 2
             };
             await dbContext.Users.AddAsync(user);
             await dbContext.SaveChangesAsync();
@@ -120,7 +120,7 @@ namespace UBB_SE_2024_923_1_TEST.Repositories
             // Assert
             var updatedUser = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == user.UserId);
             Assert.NotNull(updatedUser);
-            Assert.Equal(1, updatedUser.Role); // Role should be toggled from 2 to 1
+            Assert.Equal(1, updatedUser.Role);
         }
 
         [Fact]

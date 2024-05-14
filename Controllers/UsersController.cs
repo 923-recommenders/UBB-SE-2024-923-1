@@ -16,9 +16,9 @@ namespace UBB_SE_2024_923_1.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
-        public UsersController(UserService userService)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
         }
@@ -64,11 +64,6 @@ namespace UBB_SE_2024_923_1.Controllers
             try
             {
                 var isUpdated = await _userService.EnableOrDisableArtist(userId);
-
-                if (!isUpdated)
-                {
-                    return NotFound("User not found");
-                }
 
                 return Ok(new { message = "Artist status updated successfully" });
             }
