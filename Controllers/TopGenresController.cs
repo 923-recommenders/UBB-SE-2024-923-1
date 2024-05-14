@@ -9,9 +9,9 @@ namespace UBB_SE_2024_923_1.Controllers
     [ApiController]
     public class TopGenresController : ControllerBase
     {
-        private readonly TopGenresService _topGenresService;
+        private readonly ITopGenresService _topGenresService;
 
-        public TopGenresController(TopGenresService topGenresService)
+        public TopGenresController(ITopGenresService topGenresService)
         {
             _topGenresService = topGenresService;
         }

@@ -13,5 +13,4 @@
             Percentage = percentage;
         }
     }
-
 }

@@ -4,7 +4,7 @@ using UBB_SE_2024_923_1.Repositories;
 
 namespace UBB_SE_2024_923_1.Services
 {
-    public class TopGenresService
+    public class TopGenresService : ITopGenresService
     {
         private readonly IRepository<SongDataBaseModel> _songRepo;
         private readonly IRepository<SongRecommendationDetails> _songRecommendationRepo;
