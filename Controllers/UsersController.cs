@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using UBB_SE_2024_923_1.Models;
 using UBB_SE_2024_923_1.Repositories;
 
@@ -7,10 +12,10 @@ namespace UBB_SE_2024_923_1.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly UserRepository _repository;
-
         public UsersController(UserRepository repository)
         {
             _repository = repository;
@@ -23,6 +28,11 @@ namespace UBB_SE_2024_923_1.Controllers
             {
                 return BadRequest("Username is required");
             }
+
+            /*if (_repository.GetUserByUsername(newUserUsername) != null)
+            {
+                return BadRequest("This username is already taken");
+            }*/
 
             if (string.IsNullOrWhiteSpace(newUserPassword))
             {
@@ -85,7 +95,22 @@ namespace UBB_SE_2024_923_1.Controllers
                 return BadRequest(new { message = "Incorrect password" });
             }
 
-            return Ok(new { message = "Login successful" });
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtConfig.SecretKey));
+            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+            var tokenOptions = new JwtSecurityToken(
+                issuer: "923/1",
+                claims: new Claim[]
+                {
+                    new Claim("username", user.UserName),
+                    new Claim("id", user.UserId.ToString()),
+                    new Claim("role", user.Role.ToString())
+                    // Add more claims as needed
+                },
+                signingCredentials: signinCredentials);
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+
+            // Return JWT token to client
+            return Ok(new { token = tokenString });
         }
     }
 }
