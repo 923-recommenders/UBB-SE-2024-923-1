@@ -23,6 +23,7 @@ namespace UBB_SE_2024_923_1.Migrations
                     Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsExplicit = table.Column<bool>(type: "bit", nullable: false),
+                    YoutubeLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
                 },
                 constraints: table =>
                 {
