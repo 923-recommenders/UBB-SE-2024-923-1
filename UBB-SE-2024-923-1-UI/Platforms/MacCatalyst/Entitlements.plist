@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -12,3 +13,19 @@
     </dict>
 </plist>
 
+=======
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <!-- See https://aka.ms/maui-publish-app-store#add-entitlements for more information about adding entitlements.-->
+    <dict>
+        <!-- App Sandbox must be enabled to distribute a MacCatalyst app through the Mac App Store. -->
+        <key>com.apple.security.app-sandbox</key>
+        <true/>
+        <!-- When App Sandbox is enabled, this value is required to open outgoing network connections. -->
+        <key>com.apple.security.network.client</key>
+        <true/>
+    </dict>
+</plist>
+
+>>>>>>> 3d73a2731e59bcc0a9afa0ea1efd76c89bdac653
