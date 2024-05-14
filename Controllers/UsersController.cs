@@ -12,7 +12,6 @@ namespace UBB_SE_2024_923_1.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly UserRepository _repository;
