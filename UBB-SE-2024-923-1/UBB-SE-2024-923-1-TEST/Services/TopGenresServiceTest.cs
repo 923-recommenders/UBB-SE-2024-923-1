@@ -36,6 +36,7 @@ namespace UBB_SE_2024_923_1_TEST.Services
 
             // Assert
             Assert.Equal(3, result.Count);
+            Assert.NotEqual(4, result.Count);
         }
 
         [Fact]

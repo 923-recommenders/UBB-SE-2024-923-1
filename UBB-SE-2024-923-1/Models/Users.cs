@@ -10,7 +10,6 @@ namespace UBB_SE_2024_923_1.Models
         public int UserId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        // TO BE CHANGED WHEN EMAIL TURNED TO INT
         public string Country { get; set; }
         public string Email { get; set; }
         public int Age { get; set; }
