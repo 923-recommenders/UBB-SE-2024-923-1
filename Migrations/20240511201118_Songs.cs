@@ -14,12 +14,15 @@ namespace UBB_SE_2024_923_1.Migrations
                 name: "Songs",
                 columns: table => new
                 {
-                    SongId = table.Column<int>(type: "int", nullable: false),
+                    SongId = table.Column<int>(type: "int", nullable: false)
+                                .Annotation("SqlServer:Identity", "1, 1"),
                     ArtistName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Genere = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubGenere = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Subgenre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsExplicit = table.Column<bool>(type: "bit", nullable: false),
                 },
                 constraints: table =>
                 {

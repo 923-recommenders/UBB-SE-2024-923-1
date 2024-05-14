@@ -1,7 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using NuGet.Protocol.Core.Types;
 using UBB_SE_2024_923_1.Models;
 using UBB_SE_2024_923_1.Repositories;
+using UBB_SE_2024_923_1.Services;
 
 namespace UBB_SE_2024_923_1.Controllers
 {
@@ -9,83 +16,66 @@ namespace UBB_SE_2024_923_1.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UserRepository _repository;
+        private readonly UserService _userService;
 
-        public UsersController(UserRepository repository)
+        public UsersController(UserService userService)
         {
-            _repository = repository;
+            _userService = userService;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(string newUserUsername, string newUserPassword, string newUserCountry, string newUserEmail, int newUserAge)
+        public async Task<IActionResult> Register(string username, string password, string country, string email, int age)
         {
-            if (string.IsNullOrWhiteSpace(newUserUsername))
+            try
             {
-                return BadRequest("Username is required");
+                var isRegistered = await _userService.RegisterUser(username, password, country, email, age);
+
+                return Ok(new { message = "Registration successful" });
             }
-
-            if (string.IsNullOrWhiteSpace(newUserPassword))
+            catch (Exception ex)
             {
-                return BadRequest("Password is required");
+                return BadRequest(ex.Message);
             }
-
-            if (string.IsNullOrWhiteSpace(newUserCountry))
-            {
-                return BadRequest("Country is required");
-            }
-
-            if (string.IsNullOrWhiteSpace(newUserEmail))
-            {
-                return BadRequest("Email is required");
-            }
-
-            if (newUserAge < 0)
-            {
-                return BadRequest("Please select a valid age");
-            }
-
-            var user = new Users
-            {
-                UserName = newUserUsername,
-                Password = newUserPassword,
-                Country = newUserCountry,
-                Email = newUserEmail,
-                Age = newUserAge,
-                Role = 1
-            };
-
-            await _repository.BcryptPassword(user);
-            await _repository.Add(user);
-
-            return Ok(new { message = "Registration successful" });
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(string loginUsername, string loginPassword)
+        public async Task<IActionResult> Login(string username, string password)
         {
-            if (string.IsNullOrWhiteSpace(loginUsername))
+            try
             {
-                return BadRequest("Username is required");
-            }
+                var token = await _userService.AuthenticateUser(username, password);
 
-            if (string.IsNullOrWhiteSpace(loginPassword))
+                if (token == null)
+                {
+                    return BadRequest(new { message = "Invalid username or password" });
+                }
+
+                return Ok(new { token });
+            }
+            catch (Exception ex)
             {
-                return BadRequest("Password is required");
+                return BadRequest(ex.Message);
             }
+        }
 
-            var user = await _repository.GetUserByUsername(loginUsername);
-
-            if (user == null)
+        [HttpPut("{userId}/enable-disable")]
+        public async Task<IActionResult> EnableOrDisableArtist(int userId)
+        {
+            try
             {
-                return NotFound(new { message = "User not found" });
-            }
+                var isUpdated = await _userService.EnableOrDisableArtist(userId);
 
-            if (!_repository.VerifyPassword(loginPassword, user.Password))
+                if (!isUpdated)
+                {
+                    return NotFound("User not found");
+                }
+
+                return Ok(new { message = "Artist status updated successfully" });
+            }
+            catch (Exception ex)
             {
-                return BadRequest(new { message = "Incorrect password" });
+                return BadRequest(ex.Message);
             }
-
-            return Ok(new { message = "Login successful" });
         }
     }
 }

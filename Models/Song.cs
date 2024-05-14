@@ -12,5 +12,6 @@ namespace UBB_SE_2024_923_1.Models
         public string Subgenre { get; set; }
         public string Language { get; set; }
         public string Country { get; set; }
+        public bool IsExplicit { get; set; }
     }
 }
