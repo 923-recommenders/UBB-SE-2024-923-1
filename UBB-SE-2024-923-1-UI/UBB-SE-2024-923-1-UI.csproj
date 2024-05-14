@@ -69,10 +69,4 @@
 	  </Compile>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <MauiXaml Update="AuthPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
 </Project>

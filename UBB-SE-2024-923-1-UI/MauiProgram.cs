@@ -16,7 +16,7 @@ namespace UBB_SE_2024_923_1_UI
                 });
 
 #if DEBUG
-            builder.Logging.AddDebug();
+    		builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
