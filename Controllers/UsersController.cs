@@ -26,81 +26,56 @@ namespace UBB_SE_2024_923_1.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(string username, string password, string country, string email, int age)
         {
-            if (string.IsNullOrWhiteSpace(username))
+            try
             {
-                return BadRequest("Username is required");
-            }
+                var isRegistered = await _userService.RegisterUser(username, password, country, email, age);
 
-            if (string.IsNullOrWhiteSpace(password))
+                return Ok(new { message = "Registration successful" });
+            }
+            catch (Exception ex)
             {
-                return BadRequest("Password is required");
+                return BadRequest(ex.Message);
             }
-
-            if (string.IsNullOrWhiteSpace(country))
-            {
-                return BadRequest("Country is required");
-            }
-
-            // TO BE CHANGED WHEN EMAIL TURNED TO INT
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                return BadRequest("Email is required");
-            }
-
-            if (age < 0)
-            {
-                return BadRequest("Please select a valid age");
-            }
-
-            var isRegistered = await _userService.RegisterUser(username, password, country, email, age);
-
-            if (!isRegistered)
-            {
-                return BadRequest("This username is already taken");
-            }
-
-            return Ok(new { message = "Registration successful" });
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(string username, string password)
         {
-            if (string.IsNullOrWhiteSpace(username))
+            try
             {
-                return BadRequest("Username is required");
-            }
+                var token = await _userService.AuthenticateUser(username, password);
 
-            if (string.IsNullOrWhiteSpace(password))
+                if (token == null)
+                {
+                    return BadRequest(new { message = "Invalid username or password" });
+                }
+
+                return Ok(new { token });
+            }
+            catch (Exception ex)
             {
-                return BadRequest("Password is required");
+                return BadRequest(ex.Message);
             }
-
-            var token = await _userService.AuthenticateUser(username, password);
-
-            if (token == null)
-            {
-                return BadRequest(new { message = "Invalid username or password" });
-            }
-            return Ok(new { token });
         }
 
         [HttpPut("{userId}/enable-disable")]
         public async Task<IActionResult> EnableOrDisableArtist(int userId)
         {
-            if (userId <= 0)
+            try
             {
-                return BadRequest("Invalid user ID");
+                var isUpdated = await _userService.EnableOrDisableArtist(userId);
+
+                if (!isUpdated)
+                {
+                    return NotFound("User not found");
+                }
+
+                return Ok(new { message = "Artist status updated successfully" });
             }
-
-            var isUpdated = await _userService.EnableOrDisableArtist(userId);
-
-            if (!isUpdated)
+            catch (Exception ex)
             {
-                return NotFound("User not found");
+                return BadRequest(ex.Message);
             }
-
-            return Ok(new { message = "Artist status updated successfully" });
         }
     }
 }
-

@@ -21,42 +21,92 @@ namespace UBB_SE_2024_923_1.Services
         // TO BE CHANGED WHEN EMAIL TURNED TO INT
         public async Task<bool> RegisterUser(string username, string password, string country, string email, int age)
         {
-            var potentialUserWithSameUsername = await _userRepository.GetUserByUsername(username);
-            if (potentialUserWithSameUsername != null)
+            try
             {
-                return false;
+                if (string.IsNullOrWhiteSpace(username))
+                {
+                    throw new ArgumentException("Username is required");
+                }
+
+                if (string.IsNullOrWhiteSpace(password))
+                {
+                    throw new ArgumentException("Password is required");
+                }
+
+                if (string.IsNullOrWhiteSpace(country))
+                {
+                    throw new ArgumentException("Country is required");
+                }
+
+                // TO BE CHANGED WHEN EMAIL TURNED TO INT
+                if (string.IsNullOrWhiteSpace(email))
+                {
+                    throw new ArgumentException("Email is required");
+                }
+
+                if (age < 0)
+                {
+                    throw new ArgumentException("Please select a valid age");
+                }
+
+                var potentialUserWithSameUsername = await _userRepository.GetUserByUsername(username);
+                if (potentialUserWithSameUsername != null)
+                {
+                    throw new ArgumentException("This username is already taken");
+                }
+
+                var user = new Users
+                {
+                    UserName = username,
+                    Password = password,
+                    Country = country,
+                    Email = email,
+                    Age = age,
+                    Role = 1
+                };
+
+                await _userRepository.BcryptPassword(user);
+                await _userRepository.Add(user);
+
+                return true;
             }
-
-            var user = new Users
+            catch (ArgumentException ex)
             {
-                UserName = username,
-                Password = password,
-                Country = country,
-                Email = email,
-                Age = age,
-                Role = 1
-            };
-
-            await _userRepository.BcryptPassword(user);
-            await _userRepository.Add(user);
-
-            return true;
+                throw;
+            }
         }
 
         public async Task<string> AuthenticateUser(string username, string password)
         {
-            var user = await _userRepository.GetUserByUsername(username);
-
-            if (user == null)
+            try
             {
-                return null;
-            }
+                if (string.IsNullOrWhiteSpace(username))
+                {
+                    throw new ArgumentException("Username is required");
+                }
 
-            if (!_userRepository.VerifyPassword(password, user.Password))
-            {
-                return null;
+                if (string.IsNullOrWhiteSpace(password))
+                {
+                    throw new ArgumentException("Password is required");
+                }
+
+                var user = await _userRepository.GetUserByUsername(username);
+
+                if (user == null)
+                {
+                    throw new ArgumentException("Invalid username or password");
+                }
+
+                if (!_userRepository.VerifyPassword(password, user.Password))
+                {
+                    return null;
+                }
+                return GenerateJwtToken(user);
             }
-            return GenerateJwtToken(user);
+            catch (ArgumentException ex)
+            {
+                throw;
+            }
         }
 
         private string GenerateJwtToken(Users user)
@@ -77,16 +127,28 @@ namespace UBB_SE_2024_923_1.Services
 
         public async Task<bool> EnableOrDisableArtist(int userId)
         {
-            var user = await _userRepository.GetById(userId);
-
-            if (user == null)
+            try
             {
-                return false;
+                if (userId <= 0)
+                {
+                    throw new ArgumentException("Invalid user ID");
+                }
+
+                var user = await _userRepository.GetById(userId);
+
+                if (user == null)
+                {
+                    throw new ArgumentException("Invalid username ID");
+                }
+
+                await _userRepository.EnableOrDisableArtist(user);
+
+                return true;
             }
-
-            await _userRepository.EnableOrDisableArtist(user);
-
-            return true;
+            catch (ArgumentException ex)
+            {
+                throw;
+            }
         }
     }
 }
