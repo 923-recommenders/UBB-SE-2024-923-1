@@ -1,5 +1,6 @@
 ﻿namespace UBB_SE_2024_923_1_UI;
 using Microsoft.Maui.Controls;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -39,10 +40,18 @@ public partial class AuthPage : ContentPage
 
             if (response.IsSuccessStatusCode)
             {
-                await DisplayAlert("muie", Newtonsoft.Json.JsonConvert.SerializeObject(loginData), "OK");
-
                 var token = await response.Content.ReadAsStringAsync();
-                // store token then navigate
+                var tokenObject = JObject.Parse(token);
+
+                // Extract the token value
+                string bearerToken = tokenObject["token"].ToString();
+
+                // Save the token value to local storage
+                await SecureStorage.SetAsync("AuthToken", bearerToken);
+                await DisplayAlert("bearer token", Newtonsoft.Json.JsonConvert.SerializeObject(bearerToken), "OK");
+                await SecureStorage.SetAsync("AuthToken", bearerToken);
+
+                await Navigation.PushAsync(new SongsPage());
             }
             else
             {

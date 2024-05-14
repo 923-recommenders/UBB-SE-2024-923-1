@@ -18,9 +18,9 @@
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
             <Button
-                x:Name="CounterBtn"
+                x:Name="AuthBtn"
                 Text="Go to Auth Page" 
-                SemanticProperties.Hint="Counts the number of times you click"
+                SemanticProperties.Hint="auth"
                 Clicked="GoToAuthPage_Clicked"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>

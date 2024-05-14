@@ -1,0 +1,44 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UBB_SE_2024_923_1_UI.SongsPage"
+             Title="SongsPage">
+    <VerticalStackLayout Margin="20">
+        <!-- Header -->
+        <Label Text="Songs" FontSize="Large" HorizontalOptions="Center" Margin="0,20,0,10" />
+
+        <!-- Song List -->
+        <ListView x:Name="songListView" ItemsSource="{Binding Songs}" ItemTapped="songListView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding ArtistName}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Song Details -->
+        <StackLayout x:Name="songDetailsLayout" IsVisible="False" Margin="0,20,0,0">
+            <Label Text="Song Details" FontSize="Large" HorizontalOptions="Center" Margin="0,0,0,10" />
+
+            <Label Text="Name:" Margin="0,5,0,0" />
+            <Label Text="{Binding SelectedSong.Name}" Margin="0,0,0,10" />
+
+            <Label Text="Artist:" Margin="0,5,0,0" />
+            <Label Text="{Binding SelectedSong.ArtistName}" Margin="0,0,0,10" />
+
+            <Label Text="Genre:" Margin="0,5,0,0" />
+            <Label Text="{Binding SelectedSong.Genre}" Margin="0,0,0,10" />
+
+            <Label Text="Subgenre:" Margin="0,5,0,0" />
+            <Label Text="{Binding SelectedSong.Subgenre}" Margin="0,0,0,10" />
+
+            <Label Text="Language:" Margin="0,5,0,0" />
+            <Label Text="{Binding SelectedSong.Language}" Margin="0,0,0,10" />
+
+            <Label Text="Country:" Margin="0,5,0,0" />
+            <Label Text="{Binding SelectedSong.Country}" Margin="0,0,0,10" />
+
+            <Label Text="Explicit:" Margin="0,5,0,0" />
+            <Label Text="{Binding SelectedSong.IsExplicit}" Margin="0,0,0,10" />
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
