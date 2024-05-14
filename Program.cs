@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using UBB_SE_2024_923_1.Data;
 using UBB_SE_2024_923_1.Repositories;
+using UBB_SE_2024_923_1.Services;
 
 namespace UBB_SE_2024_923_1
 {
@@ -16,6 +17,8 @@ namespace UBB_SE_2024_923_1
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            builder.Services.AddScoped<TopGenresService>();
 
             builder.Services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
