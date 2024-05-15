@@ -1,11 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using UBB_SE_2024_923_1.Data;
 using UBB_SE_2024_923_1.Models;
-using UBB_SE_2024_923_1.Repositories;
+using UBB_SE_2024_923_1.Services;
 
 namespace UBB_SE_2024_923_1.Controllers
 {
@@ -13,13 +10,10 @@ namespace UBB_SE_2024_923_1.Controllers
     [ApiController]
     public class SongController : ControllerBase
     {
-        private readonly IRepository<Song> _repository;
-        private readonly IRepository<Users> _userRepository;
-
-        public SongController(IRepository<Song> repository, IRepository<Users> userRepository)
+        private readonly SongService _service;
+        public SongController(SongService service)
         {
-            _repository = repository;
-            _userRepository = userRepository;
+            _service = service;
         }
 
         [Authorize]
@@ -43,10 +37,10 @@ namespace UBB_SE_2024_923_1.Controllers
             // Extracting user ID
             var userId = int.Parse(userIdClaim.Value);
 
-            var user = await _userRepository.GetById(userId);
+            var user = await _service.GetUserById(userId);
             var userAge = user.Age;
 
-            var songs = await _repository.GetAll();
+            var songs = await _service.GetAllSongs();
 
             if (userAge < 18)
             {
@@ -77,10 +71,10 @@ namespace UBB_SE_2024_923_1.Controllers
             // Extracting user ID
             var userId = int.Parse(userIdClaim.Value);
 
-            var user = await _userRepository.GetById(userId);
+            var user = await _service.GetUserById(userId);
             var userAge = user.Age;
 
-            var song = await _repository.GetById(id);
+            var song = await _service.GetSongById(id);
 
             if (song == null)
             {
@@ -131,7 +125,7 @@ namespace UBB_SE_2024_923_1.Controllers
 
             try
             {
-                await _repository.Add(song);
+                await _service.AddSong(song);
                 var response = new
                 {
                     Message = "Song created successfully",
@@ -166,9 +160,9 @@ namespace UBB_SE_2024_923_1.Controllers
             // Extracting user ID
             var userId = int.Parse(userIdClaim.Value);
 
-            var user = await _userRepository.GetById(userId);
+            var user = await _service.GetUserById(userId);
 
-            var song = await _repository.GetById(id);
+            var song = await _service.GetSongById(id);
 
             if (song.ArtistName != user.UserName)
             {
@@ -180,7 +174,7 @@ namespace UBB_SE_2024_923_1.Controllers
                 return NotFound();
             }
 
-            await _repository.Delete(song);
+            await _service.DeleteSong(song);
 
             return NoContent();
         }
