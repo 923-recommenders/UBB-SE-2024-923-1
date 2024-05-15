@@ -22,5 +22,7 @@ namespace UBB_SE_2024_923_1.Data
         public DbSet<Song> Songs { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<ExcludedCountry> ExcludedCountries { get; set; }
     }
 }

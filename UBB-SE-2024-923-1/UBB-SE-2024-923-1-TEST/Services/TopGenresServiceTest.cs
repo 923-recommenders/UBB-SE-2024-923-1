@@ -23,7 +23,7 @@ namespace UBB_SE_2024_923_1_TEST.Services
             songRecommendationRepoMock = new Mock<IRepository<SongRecommendationDetails>>();
             songRepoMock.Setup(repo => repo.GetAll()).ReturnsAsync(GetExpectedSongs());
             songRecommendationRepoMock.Setup(repo => repo.GetAll()).ReturnsAsync(GetExpectedRecommendationSongs());
-            
+
         }
 
         [Fact]
