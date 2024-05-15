@@ -23,7 +23,7 @@ namespace UBB_SE_2024_923_1
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<UserService>();
 
             builder.Services.AddScoped<TopGenresService>();
 
