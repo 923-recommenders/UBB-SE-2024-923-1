@@ -24,5 +24,6 @@ namespace UBB_SE_2024_923_1.Data
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<ExcludedCountry> ExcludedCountries { get; set; }
+        public DbSet<Sound> Sounds { get; set; }
     }
 }
