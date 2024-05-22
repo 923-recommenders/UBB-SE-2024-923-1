@@ -66,6 +66,36 @@ namespace UBB_SE_2024_923_1.Migrations
                     b.ToTable("ArtistDetails");
                 });
 
+            modelBuilder.Entity("UBB_SE_2024_923_1.Models.Country", b =>
+                {
+                    b.Property<int>("CountryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CountryId");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("UBB_SE_2024_923_1.Models.ExcludedCountry", b =>
+                {
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SongId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CountryId", "SongId");
+
+                    b.ToTable("ExcludedCountries");
+                });
+
             modelBuilder.Entity("UBB_SE_2024_923_1.Models.MostPlayedArtistInformation", b =>
                 {
                     b.Property<int>("Artist_Id")
@@ -102,6 +132,9 @@ namespace UBB_SE_2024_923_1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsExplicit")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Language")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -111,6 +144,10 @@ namespace UBB_SE_2024_923_1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subgenre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YoutubeLink")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -202,6 +239,30 @@ namespace UBB_SE_2024_923_1.Migrations
                     b.HasKey("SongId", "Month", "Year");
 
                     b.ToTable("SongRecommendationDetails");
+                });
+
+            modelBuilder.Entity("UBB_SE_2024_923_1.Models.Sound", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SoundFilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sounds");
                 });
 
             modelBuilder.Entity("UBB_SE_2024_923_1.Models.Trends", b =>

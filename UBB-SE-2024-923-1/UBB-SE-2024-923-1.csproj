@@ -21,7 +21,39 @@
 	  <None Remove="UBB-SE-2024-923-1-TEST\**" />
 	</ItemGroup>
 
+
+	<ItemGroup>
+	  <Content Remove="wwwroot\Sounds\house_drums_1.wav" />
+	  <Content Remove="wwwroot\Sounds\house_drums_2.wav" />
+	  <Content Remove="wwwroot\Sounds\house_drums_3.wav" />
+	  <Content Remove="wwwroot\Sounds\house_drums_4.wav" />
+	  <Content Remove="wwwroot\Sounds\house_drums_5.wav" />
+	  <Content Remove="wwwroot\Sounds\house_fx_1.wav" />
+	  <Content Remove="wwwroot\Sounds\house_fx_2.wav" />
+	  <Content Remove="wwwroot\Sounds\house_fx_3.wav" />
+	  <Content Remove="wwwroot\Sounds\house_fx_4.wav" />
+	  <Content Remove="wwwroot\Sounds\house_fx_5.wav" />
+	  <Content Remove="wwwroot\Sounds\house_melody_1.wav" />
+	  <Content Remove="wwwroot\Sounds\house_melody_2.wav" />
+	  <Content Remove="wwwroot\Sounds\house_melody_3.wav" />
+	  <Content Remove="wwwroot\Sounds\house_melody_4.wav" />
+	  <Content Remove="wwwroot\Sounds\house_melody_5.wav" />
+	  <Content Remove="wwwroot\Sounds\rock_drums_1.wav" />
+	  <Content Remove="wwwroot\Sounds\rock_drums_2.wav" />
+	  <Content Remove="wwwroot\Sounds\rock_drums_3.wav" />
+	  <Content Remove="wwwroot\Sounds\rock_drums_4.wav" />
+	  <Content Remove="wwwroot\Sounds\rock_drums_5.wav" />
+	  <Content Remove="wwwroot\Sounds\rock_melody_1.wav" />
+	  <Content Remove="wwwroot\Sounds\rock_melody_2.wav" />
+	  <Content Remove="wwwroot\Sounds\rock_melody_3.wav" />
+	  <Content Remove="wwwroot\Sounds\rock_melody_4.wav" />
+	  <Content Remove="wwwroot\Sounds\rock_melody_5.wav" />
+	  <Content Remove="wwwroot\Sounds\voice_1.wav" />
+	  <Content Remove="wwwroot\Sounds\voice_2.wav" />
+	</ItemGroup>
+
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
@@ -37,6 +69,174 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="StaticFiles\Sounds\house_drums_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_drums_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_drums_3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_drums_4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_drums_5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_fx_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_fx_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_fx_3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_fx_4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_fx_5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_melody_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_melody_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_melody_3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_melody_4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\house_melody_5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\rock_drums_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\rock_drums_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\rock_drums_3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\rock_drums_4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\rock_drums_5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\rock_melody_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\rock_melody_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\rock_melody_3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\rock_melody_4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\rock_melody_5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\voice_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="StaticFiles\Sounds\voice_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Sounds\house_drums_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_drums_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_drums_3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_drums_4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_drums_5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_fx_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_fx_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_fx_3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_fx_4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_fx_5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_melody_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_melody_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_melody_3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_melody_4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\house_melody_5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\rock_drums_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\rock_drums_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\rock_drums_3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\rock_drums_4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\rock_drums_5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\rock_melody_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\rock_melody_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\rock_melody_3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\rock_melody_4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\rock_melody_5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\voice_1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Sounds\voice_2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

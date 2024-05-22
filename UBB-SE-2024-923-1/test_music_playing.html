@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+</head>
+<body>
+    <div>
+        <h1>Music Player</h1>
+        <audio id="audioPlayer" controls>
+            Your browser does not support the audio element.
+        </audio>
+        <button onclick="playSong(1)">Play Song 1</button>
+        <!-- Add more buttons for different songs -->
+    </div>
+
+    <script>
+        function playSong(songId) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = `https://localhost:7025/Sounds\/${songId}`;
+            audioPlayer.play();
+        }
+    </script>
+</body>
+</html>
