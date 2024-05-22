@@ -25,15 +25,21 @@ namespace UBB_SE_2024_923_1
 
             // inject automappers
             builder.Services.AddAutoMapper(typeof(SoundMappingProfile));
+            builder.Services.AddAutoMapper(typeof(PlaylistMappingProfile));
 
             // inject repositories
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ISoundRepository, SoundRepository>();
+            builder.Services.AddScoped<IPlaylistRepository, PlaylistRepository>();
+            builder.Services.AddScoped<IPlaylistSongItemRepository, PlaylistSongItemRepository>();
 
             // inject services
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ISoundService, SoundService>();
+            builder.Services.AddScoped<ISongService, SongService>();
+            builder.Services.AddScoped<IPlaylistService, PlaylistService>();
+            builder.Services.AddScoped<IPlaylistSongItemService, PlaylistSongItemService>();
             builder.Services.AddScoped<TopGenresService>();
 
             builder.Services.AddDbContext<DataContext>(options =>

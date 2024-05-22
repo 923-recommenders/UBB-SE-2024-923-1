@@ -1,9 +1,18 @@
-﻿using UBB_SE_2024_923_1.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.IdentityModel.Tokens;
+using UBB_SE_2024_923_1.Models;
 using UBB_SE_2024_923_1.Repositories;
 
 namespace UBB_SE_2024_923_1.Services
 {
-    public class SongService
+    public interface ISongService
+    {
+        Task<Song?> GetSongById(int songId);
+        Task<IEnumerable<Song>> GetAllSongs();
+        Task AddSong(Song song);
+        Task DeleteSong(Song song);
+    }
+    public class SongService : ISongService
     {
         private readonly IRepository<Song> _repository;
         private readonly IRepository<Users> _userRepository;
@@ -12,6 +21,20 @@ namespace UBB_SE_2024_923_1.Services
         {
             _repository = repository;
             _userRepository = userRepository;
+        }
+        private static bool ValidSong(Song song)
+        {
+            if (song.Name.IsNullOrEmpty() || song.ArtistName.IsNullOrEmpty())
+            {
+                return false;
+            }
+
+            if (song.SongPath.IsNullOrEmpty() || song.ImagePath.IsNullOrEmpty())
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public async Task<Users> GetUserById(int id)
@@ -31,6 +54,11 @@ namespace UBB_SE_2024_923_1.Services
 
         public async Task AddSong(Song song)
         {
+            if (!ValidSong(song))
+            {
+                throw new ValidationException("Invalid song data.");
+            }
+
             try
             {
                 await _repository.Add(song);
