@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UBB_SE_2024_923_1.Data;
 
@@ -11,9 +12,11 @@ using UBB_SE_2024_923_1.Data;
 namespace UBB_SE_2024_923_1.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240522111107_AddPlaylistEntity")]
+    partial class AddPlaylistEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,29 +142,6 @@ namespace UBB_SE_2024_923_1.Migrations
                     b.ToTable("Playlists");
                 });
 
-            modelBuilder.Entity("UBB_SE_2024_923_1.Models.PlaylistSongItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("PlaylistId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SongId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlaylistId");
-
-                    b.HasIndex("SongId");
-
-                    b.ToTable("PlaylistSongItems");
-                });
-
             modelBuilder.Entity("UBB_SE_2024_923_1.Models.Song", b =>
                 {
                     b.Property<int>("SongId")
@@ -182,10 +162,6 @@ namespace UBB_SE_2024_923_1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsExplicit")
                         .HasColumnType("bit");
 
@@ -197,11 +173,11 @@ namespace UBB_SE_2024_923_1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SongPath")
+                    b.Property<string>("Subgenre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Subgenre")
+                    b.Property<string>("YoutubeLink")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -445,25 +421,6 @@ namespace UBB_SE_2024_923_1.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("UBB_SE_2024_923_1.Models.PlaylistSongItem", b =>
-                {
-                    b.HasOne("UBB_SE_2024_923_1.Models.Playlist", "Playlist")
-                        .WithMany()
-                        .HasForeignKey("PlaylistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UBB_SE_2024_923_1.Models.Song", "Song")
-                        .WithMany()
-                        .HasForeignKey("SongId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Playlist");
-
-                    b.Navigation("Song");
                 });
 #pragma warning restore 612, 618
         }

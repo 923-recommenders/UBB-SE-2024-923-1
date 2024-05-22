@@ -13,6 +13,7 @@ namespace UBB_SE_2024_923_1.Models
         public string Language { get; set; }
         public string Country { get; set; }
         public bool IsExplicit { get; set; }
-        public string YoutubeLink { get; set; }
+        public string SongPath { get; set; }
+        public string ImagePath { get; set; }
     }
 }

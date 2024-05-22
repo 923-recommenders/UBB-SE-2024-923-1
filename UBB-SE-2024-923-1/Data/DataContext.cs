@@ -25,5 +25,7 @@ namespace UBB_SE_2024_923_1.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<ExcludedCountry> ExcludedCountries { get; set; }
         public DbSet<Sound> Sounds { get; set; }
+        public DbSet<Playlist> Playlists { get; set; }
+        public DbSet<PlaylistSongItem> PlaylistSongItems { get; set; }
     }
 }
