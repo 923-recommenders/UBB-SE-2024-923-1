@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using UBB_SE_2024_923_1.Data;
+using UBB_SE_2024_923_1.Mappings;
 using UBB_SE_2024_923_1.Models;
 using UBB_SE_2024_923_1.Repositories;
 using UBB_SE_2024_923_1.Services;
@@ -21,10 +22,18 @@ namespace UBB_SE_2024_923_1
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // inject automappers
+            builder.Services.AddAutoMapper(typeof(SoundMappingProfile));
+
+            // inject repositories
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ISoundRepository, SoundRepository>();
 
+            // inject services
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ISoundService, SoundService>();
             builder.Services.AddScoped<TopGenresService>();
 
             builder.Services.AddDbContext<DataContext>(options =>
@@ -86,6 +95,8 @@ namespace UBB_SE_2024_923_1
             }
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 

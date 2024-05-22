@@ -3,9 +3,8 @@ using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using UBB_SE_2024_923_1.Models;
 using UBB_SE_2024_923_1.Repositories;
-using UBB_SE_2024_923_1.Services;
 
-namespace NamespaceCBlurred.Business.Services
+namespace UBB_SE_2024_923_1.Services
 {
     public class SoundService : ISoundService
     {

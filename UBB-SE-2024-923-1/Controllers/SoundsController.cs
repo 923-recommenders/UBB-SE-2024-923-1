@@ -26,7 +26,22 @@ namespace UBB_SE_2024_923_1.Controllers
                     return NotFound();
                 }
 
-                return Ok(sound);
+                // return Ok(sound);
+                var filePath = Path.Combine("wwwroot/Sounds/" + sound.SoundFilePath);
+                Console.WriteLine(filePath);
+                if (!System.IO.File.Exists(filePath))
+                {
+                    return NotFound();
+                }
+
+                var memory = new MemoryStream();
+                using (var stream = new FileStream(filePath, FileMode.Open))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+
+                return File(memory, "audio/mpeg", Path.GetFileName(filePath));
             }
             catch (ValidationException ex)
             {
